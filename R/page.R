@@ -1,6 +1,5 @@
 #' @export
-page <- function(width = NULL, height = NULL, format = NULL, theme = default_theme(),
-                 pagenr = NULL, section_nr = NULL, section = NULL, pagenr_in_section = NULL) {
+page <- function(width = NULL, height = NULL, format = NULL, theme = default_theme()) {
   if (!is.null(format)) {
     width <- get_format_width(format)
     height <- get_format_height(format)
@@ -17,11 +16,22 @@ page <- function(width = NULL, height = NULL, format = NULL, theme = default_the
     pos_y = 0,
     pos_x_saved = 0,
     pos_y_saved = 0,
-    pagenr = pagenr,
-    section_nr = section_nr,
-    section = section,
-    pagenr_in_section
+    doctitle = NULL,
+    pagenr = NULL,
+    section_nr = NULL,
+    section = NULL,
+    pagenr_in_section = NULL
   ), class = "page")
+}
+
+#' @export
+get_page.page <- function(page) {
+  page
+}
+
+#' @export
+update_page.page <- function(obj, page) {
+  page
 }
 
 #' @export
@@ -30,7 +40,8 @@ next_box_idx <- function(page) {
 }
 
 #' @export
-set_pos <- function(page, x = NULL, y = NULL, x_end = NULL) {
+set_pos <- function(obj, x = NULL, y = NULL, x_end = NULL) {
+  page <- get_page(obj)
   if (!is.null(x)) x <- as_mm(x)
   else x <- page$pos_x
   if (!is.null(y)) y <- as_mm(y)
@@ -41,19 +52,21 @@ set_pos <- function(page, x = NULL, y = NULL, x_end = NULL) {
   page$pos_x <- x
   page$pos_y <- y
   page$pos_x_end <- x_end
-  page
+  update_page(obj, page)
 }
 
 #' @export
-store_current_y_pos <- function(page) {
+store_current_y_pos <- function(obj) {
+  page <- get_page(obj)
   page$pos_y_saved <- page$pos_y
-  page
+  update_page(obj, page)
 }
 
 #' @export
-store_current_x_pos <- function(page) {
+store_current_x_pos <- function(obj) {
+  page <- get_page(obj)
   page$pos_x_saved <- page$pos_x
-  page
+  update_page(obj, page)
 }
 
 #' @export

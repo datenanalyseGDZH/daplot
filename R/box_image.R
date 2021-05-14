@@ -11,9 +11,10 @@ create_image_box <- function(image, style_id, rect) {
 }
 
 #' @export
-add_image_box <- function(page, image, style_id, rect) {
+add_image_box <- function(obj, image, style_id, rect) {
+  page <- get_page(obj)
   page$boxes[[next_box_idx(page)]] <- create_image_box(image, style_id, rect)
-  page
+  update_page(obj, page)
 }
 
 #' @export

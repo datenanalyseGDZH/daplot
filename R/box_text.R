@@ -11,13 +11,15 @@ create_text_box <- function(text, style_id, rect) {
 }
 
 #' @export
-add_text_box <- function(page, text, style_id, rect) {
+add_text_box <- function(obj, text, style_id, rect) {
+  page <- get_page(obj)
   page$boxes[[next_box_idx(page)]] <- create_text_box(text, style_id, rect)
-  page
+  update_page(obj, page)
 }
 
 #' @export
-append_text_box <- function(page, text, style_id, height = NULL, width = NULL) {
+append_text_box <- function(obj, text, style_id, height = NULL, width = NULL) {
+  page <- get_page(obj)
   style <- page$theme[[style_id]]
   if (is.null(height)) {
     height <- style$fontsize * 25.4 / 72
@@ -40,7 +42,7 @@ append_text_box <- function(page, text, style_id, height = NULL, width = NULL) {
   if (page$pos_x >= page$pos_x_end) {
     page <- append_new_line(page)
   }
-  page
+  update_page(obj, page)
 }
 
 #' @export

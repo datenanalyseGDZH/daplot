@@ -11,9 +11,10 @@ create_paragraph_box <- function(text, style_id, rect) {
 }
 
 #' @export
-add_paragraph_box <- function(page, text, style_id, rect) {
+add_paragraph_box <- function(obj, text, style_id, rect) {
+  page <- get_page(obj)
   page$boxes[[next_box_idx(page)]] <- create_paragraph_box(text, style_id, rect)
-  page
+  update_page(obj, page)
 }
 
 #' @export

@@ -10,9 +10,10 @@ create_rect_box <- function(rect, style_id) {
 }
 
 #' @export
-add_rect_box <- function(page, rect, style_id) {
+add_rect_box <- function(obj, rect, style_id) {
+  page <- get_page(obj)
   page$boxes[[next_box_idx(page)]] <- create_rect_box(rect, style_id)
-  page
+  update_page(obj, page)
 }
 
 #' @export

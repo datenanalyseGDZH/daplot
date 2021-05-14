@@ -8,9 +8,10 @@ create_polygon_box <- function(points_x, points_y, style_id) {
 }
 
 #' @export
-add_polygon_box <- function(page, points_x, points_y, style_id) {
+add_polygon_box <- function(obj, points_x, points_y, style_id) {
+  page <- get_page(obj)
   page$boxes[[next_box_idx(page)]] <- create_polygon_box(points_x, points_y, style_id)
-  page
+  update_page(obj, page)
 }
 
 #' @export

@@ -11,13 +11,15 @@ create_plot_box <- function(plot, style_id, rect) {
 }
 
 #' @export
-add_plot_box <- function(page, plot, style_id, rect) {
+add_plot_box <- function(obj, plot, style_id, rect) {
+  page <- get_page(obj)
   page$boxes[[next_box_idx(page)]] <- create_plot_box(plot, style_id, rect)
-  page
+  update_page(obj, page)
 }
 
 #' @export
-append_plot_box <- function(page, plot, height, width = NULL, style_id = "plot") {
+append_plot_box <- function(obj, plot, height, width = NULL, style_id = "plot") {
+  page <- get_page(obj)
   style <- page$theme[[style_id]]
   height <- as_mm(height)
   if (is.null(width)) {
@@ -35,7 +37,7 @@ append_plot_box <- function(page, plot, height, width = NULL, style_id = "plot")
   if (page$pos_x >= page$pos_x_end) {
     page <- append_new_line(page)
   }
-  page
+  update_page(obj, page)
 }
 
 #' @export

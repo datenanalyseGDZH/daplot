@@ -1,9 +1,10 @@
 #' @export
-append_value_box <- function(page, value, text,
+append_value_box <- function(obj, value, text,
                              x = NULL, y = NULL, width = NULL,
                              level = "default",
                              value_style_id = "value_box_value",
                              text_style_id = "value_box_text") {
+  page <- get_page(obj)
   if (!is.null(x)) x <- as_mm(x)
   if (!is.null(y)) y <- as_mm(y)
   if (!is.null(width)) width <- as_mm(width)
@@ -13,7 +14,8 @@ append_value_box <- function(page, value, text,
   }
   if (!is.null(x)) page$pos_x <- x
   if (!is.null(y)) page$pos_y <- y
-  page %>%
+  page <- page %>%
     append_text_box(value, value_style_id, width = width) %>%
     append_text_box(text, text_style_id)
+  update_page(obj, page)
 }
