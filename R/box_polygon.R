@@ -16,7 +16,7 @@ add_polygon_box <- function(obj, points_x, points_y, style_id) {
 
 #' @export
 render_box.polygon_box <- function(box, page) {
-  style <- page$theme[[box$style_id]]
+  style <- get_style(page$theme, box$style_id)
   grid::grid.polygon(
     box$points_x + style$margin_right,
     page$height - box$points_y - style$margin_top,

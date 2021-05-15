@@ -42,7 +42,7 @@ append_plot_box <- function(obj, plot, height, width = NULL, style_id = "plot") 
 
 #' @export
 render_box.plot_box <- function(box, page) {
-  style <- page$theme[[box$style_id]]
+  style <- get_style(page$theme, box$style_id)
   grid::pushViewport(
     grid::viewport(x = grid::unit(box$x + style$margin_left, "mm"),
                    y = grid::unit(page$height - box$y - style$margin_top, "mm"),

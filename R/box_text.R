@@ -47,7 +47,7 @@ append_text_box <- function(obj, text, style_id, height = NULL, width = NULL) {
 
 #' @export
 render_box.text_box <- function(box, page) {
-  style <- page$theme[[box$style_id]]
+  style <- get_style(page$theme, box$style_id)
   if (!is.null(style$background)) {
     grid::grid.rect(
       x = grid::unit(box$x + style$margin_left, "mm"),

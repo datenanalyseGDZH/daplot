@@ -19,7 +19,7 @@ add_image_box <- function(obj, image, style_id, rect) {
 
 #' @export
 render_box.image_box <- function(box, page) {
-  style <- page$theme[[box$style_id]]
+  style <- get_style(page$theme, box$style_id)
   grid::grid.raster(
     box$image,
     x = grid::unit(box$x + style$margin_left, "mm"),

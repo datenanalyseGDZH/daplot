@@ -1,3 +1,4 @@
+#' @export
 default_style <- structure(list(
   fontfamily = "Arial",
   fontsize = 10,
@@ -15,12 +16,31 @@ default_style <- structure(list(
   margin_left = 0
 ), class = "style")
 
-style <- function(base = default_style,
-                  fontfamily = NULL, 
-                  fontsize = NULL, 
-                  halign = NULL, 
-                  valign = NULL, 
-                  color = NULL, 
+#' @export
+empty_style <- structure(list(
+  fontfamily = NULL,
+  fontsize = NULL,
+  color = NULL,
+  background = NULL,
+  halign = NULL,
+  valign = NULL,
+  padding_top = NULL,
+  padding_right = NULL,
+  padding_bottom = NULL,
+  padding_left = NULL,
+  margin_top = NULL,
+  margin_right = NULL,
+  margin_bottom = NULL,
+  margin_left = NULL
+), class = "style")
+
+#' @export
+style <- function(base = NULL,
+                  fontfamily = NULL,
+                  fontsize = NULL,
+                  halign = NULL,
+                  valign = NULL,
+                  color = NULL,
                   background = NULL,
                   padding_top = NULL,
                   padding_right = NULL,
@@ -30,6 +50,7 @@ style <- function(base = default_style,
                   margin_right = NULL,
                   margin_bottom = NULL,
                   margin_left = NULL) {
+  if (is.null(base)) base <- empty_style
   result <- base
   if (!is.null(fontfamily)) result$fontfamily <- fontfamily
   if (!is.null(fontsize)) result$fontsize <- fontsize

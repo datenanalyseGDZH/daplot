@@ -36,7 +36,7 @@ create_page2 <- function(doc) {
                  "default", rect = c(10, 28, 150, 110))
 }
 
-document(title = "Example 2b", format = "slide", theme = get_slide_theme()) %>%
+create_document(title = "Example 2b", format = "slide", theme = get_slide_theme()) %>%
   create_page1() %>%
   create_page2() %>%
   save_pdf()

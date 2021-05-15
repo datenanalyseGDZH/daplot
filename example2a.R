@@ -12,7 +12,7 @@
 library(ggplot2)
 library(daplot)
 
-document(title = "Example 2a", format = "slide", theme = get_slide_theme()) %>%
+create_document(title = "Example 2a", format = "slide", theme = get_slide_theme()) %>%
   start_page() %>%
   add_slide_title("First page") %>%
   add_slide_subtitle("A simple plot of speed vs distance") %>%

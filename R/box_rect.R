@@ -18,7 +18,7 @@ add_rect_box <- function(obj, rect, style_id) {
 
 #' @export
 render_box.rect_box <- function(box, page) {
-  style <- page$theme[[box$style_id]]
+  style <- get_style(page$theme, box$style_id)
   grid::grid.rect(
     x = grid::unit(box$x + style$margin_left, "mm"),
     y = grid::unit(page$height - box$y - style$margin_top, "mm"),

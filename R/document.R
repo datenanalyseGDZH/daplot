@@ -1,5 +1,5 @@
 #' @export
-document <- function(title = "unnamed", width = NULL, height = NULL, format = NULL, theme = default_theme()) {
+create_document <- function(title = "unnamed", width = NULL, height = NULL, format = NULL, theme = default_theme()) {
   structure(list(
     title = title,
     width = width,
@@ -47,7 +47,7 @@ start_page <- function(doc) {
   }
   doc$current_page_number <- doc$current_page_number + 1
   doc$current_page_number_in_section <- doc$current_page_number_in_section + 1
-  current_page <- page(doc$width, doc$height, doc$format, doc$theme)
+  current_page <- create_page(doc$width, doc$height, doc$format, doc$theme)
   current_page$doctitle <- doc$title
   current_page$pagenr <- doc$current_page_number
   current_page$section_nr <- doc$current_section_number

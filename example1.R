@@ -6,7 +6,7 @@ library(daplot)
 
 # Example saved as PNG
 
-page(format = "slide", theme = get_slide_theme()) %>%
+create_page(format = "slide", theme = get_slide_theme()) %>%
   add_slide_title("Example1") %>%
   add_slide_subtitle("A simple plot of speed vs distance") %>%
   add_plot_box(ggplot(data = cars) + geom_point(aes(x = speed, y = dist)),
@@ -16,7 +16,7 @@ page(format = "slide", theme = get_slide_theme()) %>%
 
 # Example saved as PDF
 
-page(format = "slide", theme = get_slide_theme()) %>%
+create_page(format = "slide", theme = get_slide_theme()) %>%
   add_slide_title("Example1") %>%
   add_slide_subtitle("A simple plot of speed vs distance") %>%
   add_plot_box(ggplot(data = cars) + geom_point(aes(x = speed, y = dist)),

@@ -1,5 +1,5 @@
 #' @export
-page <- function(width = NULL, height = NULL, format = NULL, theme = default_theme()) {
+create_page <- function(width = NULL, height = NULL, format = NULL, theme = default_theme()) {
   if (!is.null(format)) {
     width <- get_format_width(format)
     height <- get_format_height(format)
