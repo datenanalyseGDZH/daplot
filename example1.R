@@ -1,16 +1,19 @@
 # This example shows how to generate a simple slide containing
 # title, subtitle and a simple plot.
 
-library(extrafont)
 library(ggplot2)
 library(daplot)
-
-# extrafont::font_import()
-loadfonts(device = "win", quiet = TRUE)
 
 page(format = "slide", theme = get_slide_theme()) %>%
   add_slide_title("Example1") %>%
   add_slide_subtitle("A simple plot of speed vs distance") %>%
   add_plot_box(ggplot(data = cars) + geom_point(aes(x = speed, y = dist)),
                "default", rect = c(10, 28, 150, 110)) %>%
-  save_as("example1")
+  save_png("example1")
+
+page(format = "slide", theme = get_slide_theme()) %>%
+  add_slide_title("Example1") %>%
+  add_slide_subtitle("A simple plot of speed vs distance") %>%
+  add_plot_box(ggplot(data = cars) + geom_point(aes(x = speed, y = dist)),
+               "default", rect = c(10, 28, 150, 110)) %>%
+  save_pdf("example1")

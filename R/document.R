@@ -70,10 +70,34 @@ start_section <- function(doc, section, section_number = NULL) {
 }
 
 #' @export
-save <- function(doc) {
-  # TODO render as PDF
-  # for now, we just render all pages as PNG
-  for (page in doc$pages) {
-    save_as(page, paste0(doc$title, "-page-", page$pagenr))
+save_pdf <- function(doc, file = NULL) {
+  extrafont::loadfonts(device = "pdf", quiet = TRUE)
+  if (class(doc) == "document") {
+    grDevices::cairo_pdf(filename = ifelse(is.null(file), paste0(doc$title, ".pdf"), paste0(file, ".pdf")),
+                 width = doc$pages$page1$width / 25.4,
+                 height = doc$pages$page1$height / 25.4,
+                 family = "Arial",
+                 onefile = TRUE)
+    pagenr <- 1
+    for (page in doc$pages) {
+      for (box in page$boxes) {
+        render_box(box, page)
+      }
+      if (pagenr < length(doc$pages)) {
+        grid::grid.newpage()
+      }
+      pagenr <- pagenr + 1
+    }
+  } else {
+    page <- doc
+    grDevices::cairo_pdf(filename = paste0(file, ".pdf"),
+                 width = page$width / 25.4,
+                 height = page$height / 25.4,
+                 family = "Arial",
+                 onefile = TRUE)
+    for (box in page$boxes) {
+      render_box(box, page)
+    }
   }
+  grDevices::dev.off()
 }

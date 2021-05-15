@@ -9,12 +9,8 @@
 # all in one swoop. For a better approach see
 # example 2b.
 
-library(extrafont)
 library(ggplot2)
 library(daplot)
-
-# extrafont::font_import()
-loadfonts(device = "win", quiet = TRUE)
 
 document(title = "Example 2a", format = "slide", theme = get_slide_theme()) %>%
   start_page() %>%
@@ -29,4 +25,4 @@ document(title = "Example 2a", format = "slide", theme = get_slide_theme()) %>%
   add_slide_pagenr() %>%
   add_plot_box(ggplot(data = iris) + geom_point(aes(x = Sepal.Length, y = Petal.Length, col = Species)),
                "default", rect = c(10, 28, 150, 110)) %>%
-  save()
+  save_pdf()

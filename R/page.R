@@ -89,8 +89,8 @@ render_box <- function(box, page) {
 }
 
 #' @export
-save_as <- function(page, file, res = 600) {
-  # TODO support PDF, SVG, PS etc in addition to PNG
+save_png <- function(page, file, res = 600) {
+  extrafont::loadfonts(device = "win", quiet = TRUE)
   grDevices::png(
     paste0(file, ".png"),
     width = page$width,

@@ -13,12 +13,8 @@
 # the pages in the final statement, then the
 # pages would still be numbered sequentially.
 
-library(extrafont)
 library(ggplot2)
 library(daplot)
-
-# extrafont::font_import()
-loadfonts(device = "win", quiet = TRUE)
 
 create_page1 <- function(doc) {
   doc %>%
@@ -43,4 +39,4 @@ create_page2 <- function(doc) {
 document(title = "Example 2b", format = "slide", theme = get_slide_theme()) %>%
   create_page1() %>%
   create_page2() %>%
-  save()
+  save_pdf()
