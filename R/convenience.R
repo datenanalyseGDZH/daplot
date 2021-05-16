@@ -1,25 +1,27 @@
 #' @export
-add_slide_pagenr <- function(obj, pagenr = NULL, x = page$width - 10, y = 5) {
+add_slide_pagenr <- function(obj, pagenr = NULL, x = NULL, y = NULL) {
   page <- get_page(obj)
+  if (is.null(x)) x <- page$width - 10
+  if (is.null(y)) y <- 5
   x <- as_mm(x)
   y <- as_mm(y)
-  if (is.null(pagenr)) {
-    pagenr = page$pagenr
-  }
-  page %>%
+  if (is.null(pagenr)) pagenr <- page$pagenr
+  page <- page %>%
     add_text_box(as.character(pagenr),
                  style_id = "pagenr",
-                 rect = c(x, y, x + 7, y + 3)) -> page
+                 rect = c(x, y, x + 7, y + 3))
   update_page(obj, page)
 }
 
 #' @export
-add_slide_head <- function(obj, pagenr,
-                           directorate = "Gesundheitsdirektion",
-                           x = page$width - 55, y = 7) {
+add_slide_head <- function(obj, pagenr = NULL, x = NULL, y = NULL,
+                           directorate = "Gesundheitsdirektion") {
   page <- get_page(obj)
+  if (is.null(x)) x <- page$width - 55
+  if (is.null(y)) y <- 7
   x <- as_mm(x)
   y <- as_mm(y)
+  if (is.null(pagenr)) pagenr <- page$pagenr
   page <- page %>%
     add_polygon_box(points_x = c(x, x + 5, x),
                     points_y = c(y + 5, y + 5, y),
@@ -67,9 +69,10 @@ add_slide_source <- function(obj, text, x = 0, y = 110) {
   x <- as_mm(x)
   y <- as_mm(y)
   page <- page %>%
-    set_pos(x = x, y = y) %>%
-    append_text_box(text, "annotate_L", width = 150)
-  update_page(obj)
+    add_text_box(text,
+                 style_id = "annotate_L",
+                 rect = c(x, y, x + 150, y + 7))
+  update_page(obj, page)
 }
 
 #' @export

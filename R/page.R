@@ -1,5 +1,7 @@
 #' @export
-create_page <- function(width = NULL, height = NULL, format = NULL, theme = default_theme()) {
+create_page <- function(width = NULL, height = NULL, format = NULL,
+                        theme = default_theme(),
+                        pagenr = NULL) {
   if (!is.null(format)) {
     width <- get_format_width(format)
     height <- get_format_height(format)
@@ -17,7 +19,7 @@ create_page <- function(width = NULL, height = NULL, format = NULL, theme = defa
     pos_x_saved = 0,
     pos_y_saved = 0,
     doctitle = NULL,
-    pagenr = NULL,
+    pagenr = pagenr,
     section_nr = NULL,
     section = NULL,
     pagenr_in_section = NULL
