@@ -15,18 +15,8 @@ create_document <- function(title = "unnamed", width = NULL, height = NULL, form
 }
 
 #' @export
-get_page <- function(obj) {
-  UseMethod("get_page")
-}
-
-#' @export
 get_page.document <- function(doc) {
   doc$pages[[paste0("page", length(doc$pages))]]
-}
-
-#' @export
-update_page <- function(obj, page) {
-  UseMethod("update_page")
 }
 
 #' @export

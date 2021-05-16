@@ -37,6 +37,41 @@ update_page.page <- function(obj, page) {
 }
 
 #' @export
+width <- function(obj) {
+  get_page(obj)$width
+}
+
+#' @export
+height <- function(obj) {
+  get_page(obj)$height
+}
+
+#' @export
+pos_x <- function(obj) {
+  get_page(obj)$pos_x
+}
+
+#' @export
+pos_y <- function(obj) {
+  get_page(obj)$pos_y
+}
+
+#' @export
+pos_x_end <- function(obj) {
+  get_page(obj)$pos_x_end
+}
+
+#' @export
+pos_x_saved <- function(obj) {
+  get_page(obj)$pos_x_saved
+}
+
+#' @export
+pos_y_saved <- function(obj) {
+  get_page(obj)$pos_y_saved
+}
+
+#' @export
 next_box_idx <- function(page) {
   paste0("box", length(page$boxes) + 1)
 }
