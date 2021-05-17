@@ -135,7 +135,8 @@ save_png <- function(page, file, res = 600) {
     width = page$width,
     height = page$height,
     units = "mm",
-    res = res)
+    res = res,
+    type = "cairo")
   if (is.null(page$lwd)) page$lwd <- 1
   for (box in page$boxes) {
     render_box(box, page)
