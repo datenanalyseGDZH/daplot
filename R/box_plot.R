@@ -50,6 +50,6 @@ render_box.plot_box <- function(box, page) {
                    height = grid::unit(box$height - style$margin_top - style$margin_bottom, "mm"),
                    just = c(0, 1),
                    gp = grid::gpar(lwd = page$lwd)))
-  grid::grid.draw(ggplot2::ggplotGrob(box$plot + theme(axis.ticks = element_line(size = page$lwd))))
+  grid::grid.draw(ggplot2::ggplotGrob(box$plot))
   grid::popViewport()
 }
