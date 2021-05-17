@@ -1,7 +1,8 @@
 #' @export
 create_page <- function(width = NULL, height = NULL, format = NULL,
                         theme = default_theme(),
-                        pagenr = NULL) {
+                        pagenr = NULL,
+                        lwd = NULL) {
   if (!is.null(format)) {
     width <- get_format_width(format)
     height <- get_format_height(format)
@@ -22,7 +23,8 @@ create_page <- function(width = NULL, height = NULL, format = NULL,
     pagenr = pagenr,
     section_nr = NULL,
     section = NULL,
-    pagenr_in_section = NULL
+    pagenr_in_section = NULL,
+    lwd = NULL
   ), class = "page")
 }
 
@@ -134,6 +136,7 @@ save_png <- function(page, file, res = 600) {
     height = page$height,
     units = "mm",
     res = res)
+  if (is.null(page$lwd)) page$lwd <- 1
   for (box in page$boxes) {
     render_box(box, page)
   }

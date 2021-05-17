@@ -26,5 +26,5 @@ render_box.rect_box <- function(box, page) {
     height = grid::unit(box$height - style$margin_top - style$margin_bottom, "mm"),
     hjust = 0,
     vjust = 1,
-    gp = grid::gpar(col = style$color, fill = style$background))
+    gp = grid::gpar(col = style$color, fill = style$background, lwd = page$lwd))
 }

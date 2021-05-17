@@ -21,5 +21,5 @@ render_box.polygon_box <- function(box, page) {
     box$points_x + style$margin_right,
     page$height - box$points_y - style$margin_top,
     default.units = "mm",
-    gp = grid::gpar(fill = style$background, col = style$color))
+    gp = grid::gpar(fill = style$background, col = style$color, lwd = page$lwd))
 }

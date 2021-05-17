@@ -9,8 +9,25 @@
 # all in one swoop. For a better approach see
 # example 2b.
 
+library(tibble)
 library(ggplot2)
 library(daplot)
+
+df <- tribble(
+  ~n,   ~value,
+  1,      123,
+  2,      127,
+  3,      122,
+  4,      143,
+  5,      146,
+  6,      134,
+  7,      135,
+  8,      141,
+  9,      155,
+  10,     160,
+  11,     167,
+  12,     162
+)
 
 create_document(title = "Example 2a", format = "slide", theme = get_slide_theme()) %>%
   start_page() %>%
@@ -24,5 +41,13 @@ create_document(title = "Example 2a", format = "slide", theme = get_slide_theme(
   add_slide_subtitle("Something about flowers") %>%
   add_slide_pagenr() %>%
   add_plot_box(ggplot(data = iris) + geom_point(aes(x = Sepal.Length, y = Petal.Length, col = Species)),
+               "default", rect = c(10, 28, 150, 110)) %>%
+  start_page() %>%
+  add_slide_title("Third page") %>%
+  add_slide_subtitle("A Barchart") %>%
+  add_slide_pagenr() %>%
+  add_plot_box(ggplot(data = df) +
+                 geom_bar(aes(x = n, y = value), width = 0.8,
+                          col = "blue", fill = "blue", stat = "identity"),
                "default", rect = c(10, 28, 150, 110)) %>%
   save_pdf()

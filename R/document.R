@@ -1,5 +1,8 @@
 #' @export
-create_document <- function(title = "unnamed", width = NULL, height = NULL, format = NULL, theme = default_theme()) {
+create_document <- function(title = "unnamed", width = NULL, height = NULL,
+                            format = NULL,
+                            theme = default_theme(),
+                            lwd = NULL) {
   structure(list(
     title = title,
     width = width,
@@ -10,7 +13,8 @@ create_document <- function(title = "unnamed", width = NULL, height = NULL, form
     current_page_number = 0,
     current_section_number = 0,
     current_section = NULL,
-    current_page_number_in_section = 0
+    current_page_number_in_section = 0,
+    lwy = NULL
   ), class = "document")
 }
 
@@ -43,6 +47,7 @@ start_page <- function(doc) {
   current_page$section_nr <- doc$current_section_number
   current_page$section <- doc$current_section
   current_page$pagenr_in_section <- doc$current_page_number_in_section
+  current_page$lwd <- doc$lwd
   doc$pages[[next_page_idx(doc)]] <- current_page
   doc
 }
@@ -70,6 +75,7 @@ save_pdf <- function(doc, file = NULL) {
                  onefile = TRUE)
     pagenr <- 1
     for (page in doc$pages) {
+      if (is.null(page$lwd)) page$lwd <- 0.5
       for (box in page$boxes) {
         render_box(box, page)
       }
@@ -85,6 +91,7 @@ save_pdf <- function(doc, file = NULL) {
                  height = page$height / 25.4,
                  family = "Arial",
                  onefile = TRUE)
+    if (is.null(page$lwd)) page$lwd <- 0.5
     for (box in page$boxes) {
       render_box(box, page)
     }
