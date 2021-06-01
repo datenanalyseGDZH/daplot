@@ -1,5 +1,11 @@
 #' @export
 add_slide_pagenr <- function(obj, pagenr = NULL, x = NULL, y = NULL) {
+  .Deprecated("set_slide_pagenr")
+  set_slide_pagenr(obj, pagenr, x, y)
+}
+
+#' @export
+set_slide_pagenr <- function(obj, pagenr = NULL, x = NULL, y = NULL) {
   page <- get_page(obj)
   if (is.null(x)) x <- page$width - 10
   if (is.null(y)) y <- 5
@@ -15,7 +21,14 @@ add_slide_pagenr <- function(obj, pagenr = NULL, x = NULL, y = NULL) {
 
 #' @export
 add_slide_head <- function(obj, pagenr = NULL, x = NULL, y = NULL,
-                           directorate = "Gesundheitsdirektion") {
+                           department = "Gesundheitsdirektion") {
+  .Deprecated("set_slide_head")
+  set_slide_head(obj, pagenr, x, y, directorate)
+}
+
+#' @export
+set_slide_head <- function(obj, pagenr = NULL, x = NULL, y = NULL,
+                           department = "Gesundheitsdirektion") {
   page <- get_page(obj)
   if (is.null(x)) x <- page$width - 55
   if (is.null(y)) y <- 7
@@ -41,6 +54,12 @@ add_slide_head <- function(obj, pagenr = NULL, x = NULL, y = NULL,
 
 #' @export
 add_slide_title <- function(obj, title, x = 10, y = 10) {
+  .Deprecated("set_slide_title")
+  set_slide_title(obj, title, x, y)
+}
+
+#' @export
+set_slide_title <- function(obj, title, x = 10, y = 10) {
   page <- get_page(obj)
   x <- as_mm(x)
   y <- as_mm(y)
@@ -53,6 +72,12 @@ add_slide_title <- function(obj, title, x = 10, y = 10) {
 
 #' @export
 add_slide_subtitle <- function(obj, subtitle, x = 10, y = 17) {
+  .Deprecated("set_slide_subtitle")
+  set_slide_subtitle(obj, subtitle, x, y)
+}
+
+#' @export
+set_slide_subtitle <- function(obj, subtitle, x = 10, y = 17) {
   page <- get_page(obj)
   x <- as_mm(x)
   y <- as_mm(y)
@@ -65,6 +90,12 @@ add_slide_subtitle <- function(obj, subtitle, x = 10, y = 17) {
 
 #' @export
 add_slide_source <- function(obj, text, x = 0, y = 110) {
+  .Deprecated("set_slide_source")
+  set_slide_source(obj, text, x, y)
+}
+
+#' @export
+set_slide_source <- function(obj, text, x = 0, y = 110) {
   page <- get_page(obj)
   x <- as_mm(x)
   y <- as_mm(y)
@@ -72,32 +103,5 @@ add_slide_source <- function(obj, text, x = 0, y = 110) {
     add_text_box(text,
                  style_id = "annotate_L",
                  rect = c(x, y, x + 150, y + 7))
-  update_page(obj, page)
-}
-
-#' @export
-append_value_box2 <- function(obj, value1, value2, text, suffix = "",
-                              x = NULL, y = NULL, width = NULL,
-                              level = "default",
-                              value_style_id = "value_box_value",
-                              text_style_id = "value_box_text") {
-  page <- get_page(obj)
-  value <- paste0(format(value1, big.mark = "'"), " / ", format(value2, big.mark = "'"), " ", suffix)
-  page <- page %>%
-    append_value_box(value, text, x, y, width, level, value_style_id, text_style_id)
-  update_page(obj, page)
-}
-
-#' @export
-append_value_box_delta <- function(obj, value, delta, text,
-                                   x = NULL, y = NULL, width = NULL,
-                                   level = "default",
-                                   value_style_id = "value_box_value",
-                                   text_style_id = "value_box_text") {
-  page <- get_page(obj)
-  value <- paste0(format(value, big.mark = "'"),
-                  " (", ifelse(delta >= 0, "+", ""), format(delta, big.mark = "'"), ")")
-  page <- page %>%
-    append_value_box(value, text, x, y, width, level, value_style_id, text_style_id)
   update_page(obj, page)
 }

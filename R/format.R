@@ -13,6 +13,10 @@ get_format_dimensions <- function(format) {
     list(width = 420, height = 297)
   } else if (format %in% c("presentation", "powerpoint", "ppt", "pptx", "folie", "slide")) {
     list(width = 160, height = 120)
+  } else if (format %in% c("slide_4x3", "folie_4x3")) {
+    list(width = 160, height = 120)
+  } else if (format %in% c("slide_16x9", "folie_16x9")) {
+    list(width = 213, height = 120)
   } else {
     stop(paste0("unknown format ", format))
   }

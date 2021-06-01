@@ -1,12 +1,12 @@
 Package: daplot
 Type: Package
 Title: A rendering system for arranging plots, text and graphical elements
-Version: 0.1.2
+Version: 0.2.0
 Author: Damian Brunold
 Maintainer: Damian Brunold <damian.brunold@gd.zh.ch>
 Description: This rendering system lets you conveniently arrange
     plots, text boxes and graphical elements on a page. It uses
-    the flexible and widely used "graphics" system R package.
+    the flexible and widely used "grid" system R package.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
