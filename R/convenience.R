@@ -23,7 +23,7 @@ set_slide_pagenr <- function(obj, pagenr = NULL, x = NULL, y = NULL) {
 add_slide_head <- function(obj, pagenr = NULL, x = NULL, y = NULL,
                            department = "Gesundheitsdirektion") {
   .Deprecated("set_slide_head")
-  set_slide_head(obj, pagenr, x, y, directorate)
+  set_slide_head(obj, pagenr, x, y, department)
 }
 
 #' @export

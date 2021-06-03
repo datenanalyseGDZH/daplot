@@ -1,7 +1,7 @@
 Package: daplot
 Type: Package
 Title: A rendering system for arranging plots, text and graphical elements
-Version: 0.2.0
+Version: 0.2.1
 Author: Damian Brunold
 Maintainer: Damian Brunold <damian.brunold@gd.zh.ch>
 Description: This rendering system lets you conveniently arrange
