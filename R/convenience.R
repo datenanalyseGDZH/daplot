@@ -23,7 +23,7 @@ set_slide_pagenr <- function(obj, pagenr = NULL, x = NULL, y = NULL) {
 add_slide_head <- function(obj, pagenr = NULL, x = NULL, y = NULL,
                            department = "Gesundheitsdirektion") {
   .Deprecated("set_slide_head")
-  set_slide_head(obj, pagenr, x, y, department)
+  set_slide_head(obj, pagenr, x, y, department = department)
 }
 
 #' @export
@@ -43,7 +43,7 @@ set_slide_head <- function(obj, pagenr = NULL, x = NULL, y = NULL,
     add_text_box("Kanton Zürich",
                  style_id = "pagenr",
                  rect = c(x + 7, y - 2, x + 7 + 50, y - 2 + 3)) %>%
-    add_text_box(directorate,
+    add_text_box(department,
                  style_id = "pagenrbold",
                  rect = c(x + 7, y - 2 + 3, x + 7 + 50, y - 2 + 6)) %>%
     add_text_box(paste0("Seite ", pagenr),
